@@ -11,7 +11,7 @@ var questionCounter;
 
 async function lookForStopQuestion() {
     try {
-        let question = await driver.findElement(By.xpath("//*[contains(text(), 'Making the login page mobile responsive')]")); // Fill in question text here
+        let question = await driver.findElement(By.xpath("//*[contains(text(), 'Can we add normalization and transaction section in this course?')]")); // Fill in question text here
         return findAllQuestions();
     } catch (err) {
         return clickLoadMoreButton();
@@ -87,11 +87,12 @@ driver.wait(until.elementLocated(By.id('id_email')), 10000)
 }).then(function() {
 	driver.wait(until.elementLocated(By.className('dropdown__avatar')), 10000)
 	.then(function() {
-		driver.get("https://www.udemy.com/the-web-developer-bootcamp/learn/v4/questions");
-		var loadMore = driver.wait(until.elementLocated(By.css("button[ng-click='loadMore()']")), 10000);
-		loadMore.click()
-			.then(function() {
-				lookForStopQuestion();
-			});
+		// driver.get("https://www.udemy.com/the-web-developer-bootcamp/learn/v4/questions");
+		driver.get("https://www.udemy.com/the-ultimate-mysql-bootcamp-go-from-sql-beginner-to-expert/learn/v4/questions");
+		driver.wait(until.elementsLocated(By.className("checkbox-label")), 10000)
+			.then(function(unreads) {
+				unreads[5].click()
+					.then(lookForStopQuestion);
+			})
 	});
 });
