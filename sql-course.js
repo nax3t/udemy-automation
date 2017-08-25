@@ -87,7 +87,6 @@ driver.wait(until.elementLocated(By.id('id_email')), 10000)
 }).then(function() {
 	driver.wait(until.elementLocated(By.className('dropdown__avatar')), 10000)
 	.then(function() {
-		// driver.get("https://www.udemy.com/the-web-developer-bootcamp/learn/v4/questions");
 		driver.get("https://www.udemy.com/the-ultimate-mysql-bootcamp-go-from-sql-beginner-to-expert/learn/v4/questions");
 		driver.wait(until.elementsLocated(By.className("checkbox-label")), 10000)
 			.then(function(unreads) {
