@@ -17,7 +17,7 @@ console.log(`${counter + 1} questions`);
 async function createLogFile() {
 	console.log("Creating log file!");
 	var date = Date.now().toString();
-	fs.writeFile(`./logs/zarko${date}.txt`, urls, function(err) {
+	fs.writeFile(`./logs/ian-removals-${date}.txt`, urls, function(err) {
 	    if(err) {
 	        return console.log(err);
 	    }
@@ -25,19 +25,19 @@ async function createLogFile() {
 	}); 
 }
 
-async function checkForZarko() {
+async function checkForIan() {
 	try {
 		await driver.get(urls[counter]);
 		try { 
-				await driver.wait(until.elementLocated(By.css("a[ng-href='/user/zarko-maslaric/']")), 2000);
-				console.log('Zarko found');
+				await driver.wait(until.elementLocated(By.css("a[ng-href='/user/ianschoonover/']")), 2000);
+				console.log('Ian found');
 				urls.splice(counter, 1);
 		} catch (err) {
-				console.log('Zarko not found');
+				console.log('Ian not found');
 		}
 		counter--;
 		if(counter >= 0) {
-			checkForZarko();
+			checkForIan();
 		} else {
 				console.log(`${urls.length} questions left after removals`);
 				createLogFile();
@@ -56,7 +56,7 @@ async function getLoginPage() {
 			pwInput.sendKeys(process.env.UDEMY_AUTH);
 			let loginButton = await driver.findElement(By.id('submit-id-submit'));
 			await loginButton.click();
-			return checkForZarko();
+			return checkForIan();
 	} catch(err) {
 			console.log(err);
 			return err;
