@@ -33,7 +33,7 @@ async function getLoginPage() {
 async function lookForStopQuestion() {
 	console.log("Look for stop question");
     try {
-        let question = await driver.findElement(By.xpath("//*[contains(text(), 'Still getting push error')]")); // Fill in question text here
+        let question = await driver.findElement(By.xpath("//*[contains(text(), 'my solution result is in one line')]")); // Fill in question text here
         return findAllQuestions();
     } catch (err) {
         return clickLoadMoreButton();
