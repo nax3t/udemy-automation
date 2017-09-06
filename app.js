@@ -74,7 +74,10 @@ async function clickAllQuestions(questions) {
 	console.log("Click all questions");
 	try {
 			if(questionCounter >= 0) {
-					await questions[questionCounter].click();
+					let question = questions[questionCounter];
+					driver.executeScript("arguments[0].scrollIntoView()", question);
+			    driver.sleep(300);
+			    await question.click();
 					questionCounter--;
 					let url = await driver.getCurrentUrl();
 					urls.push(url);
@@ -83,6 +86,7 @@ async function clickAllQuestions(questions) {
 					createLogFile();
 			}
 	} catch (err) {
+			console.log(err);
 			return err;
 	}
 }
